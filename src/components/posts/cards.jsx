@@ -7,7 +7,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 const PostCard = (props) => {
-  const { post } = props
+  const { post,handleClick } = props
+  
   return (
     <><Card sx={{
       height: "100%",
@@ -26,7 +27,10 @@ const PostCard = (props) => {
         </Typography>
       </CardContent>
       <CardActions>
-      <Button size="small" >View</Button>
+      <Button 
+      size="small" 
+      onClick={() => handleClick(post.id)}
+      >View</Button>
       </CardActions>
     </Card>
 

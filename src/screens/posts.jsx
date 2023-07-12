@@ -8,6 +8,9 @@ import Container from '@mui/material/Container';
 import PostCard from "../components/posts/cards";
 import Pagination from '@mui/material/Pagination';
 
+import Comments from "../components/posts/comments"
+
+
 const limit = 10
 
 const PostsPage = () => {
@@ -17,6 +20,7 @@ const PostsPage = () => {
   const [loading, setLoading] = useState(true)
   const [pageCount, setPageCount] = useState(1)
   const [currentPage, setcurrentPage] = useState(1)
+  const [activePost, setActivePost] = useState(null)
 
   useEffect(() => {
     const getPost = async () => {
@@ -90,7 +94,7 @@ const PostsPage = () => {
             postData.map((post) => {
               return (
                 <Grid key={post.id} xs={12} sm={12} md={6} lg={4} >
-                  <PostCard post={post} />
+                  <PostCard handleClick={(postId) => setActivePost(postId)} post={post}/>
                 </Grid>
               )
 
@@ -99,6 +103,7 @@ const PostsPage = () => {
 
         </Grid>
 
+
         <Pagination
           count={pageCount}
           page={currentPage}
@@ -106,7 +111,12 @@ const PostsPage = () => {
           onChange={(e, newPage) => {
             setcurrentPage(newPage)
           }
-          } sx={{ my: 3 }} />
+          } sx={{ my: 3 }}
+        />
+
+        <Comments open={activePost !== null}
+          handleClose={() => setActivePost (null)}
+          postId={activePost} />
 
       </Container>
 
