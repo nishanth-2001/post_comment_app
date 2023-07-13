@@ -21,6 +21,7 @@ const PostsPage = () => {
   const [pageCount, setPageCount] = useState(1)
   const [currentPage, setcurrentPage] = useState(1)
   const [activePost, setActivePost] = useState(null)
+  const [postTitle, setPostTitle] = useState("")
 
   useEffect(() => {
     const getPost = async () => {
@@ -94,7 +95,12 @@ const PostsPage = () => {
             postData.map((post) => {
               return (
                 <Grid key={post.id} xs={12} sm={12} md={6} lg={4} >
-                  <PostCard handleClick={(postId) => setActivePost(postId)} post={post}/>
+                  <PostCard handleClick={(postId,newPostTitle) =>{
+                  setActivePost(postId)
+                  setPostTitle(newPostTitle)
+                  }} 
+                  post={post}
+                  />
                 </Grid>
               )
 
@@ -115,8 +121,13 @@ const PostsPage = () => {
         />
 
         <Comments open={activePost !== null}
-          handleClose={() => setActivePost (null)}
-          postId={activePost} />
+          handleClose={() => {
+            setActivePost(null)
+            setPostTitle("")
+          }}
+          postId={activePost} 
+          postTitle={postTitle}
+          />
 
       </Container>
 

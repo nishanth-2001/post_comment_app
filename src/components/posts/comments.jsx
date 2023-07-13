@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const Comments = (props) => {
-    const { open, handleClose, postId } = props
+    const { open, handleClose, postId, postTitle } = props
     
     //const { open } = props
     // const { handleClose } = props
@@ -22,7 +22,7 @@ const Comments = (props) => {
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
             >
-                <DialogTitle >Subscribe</DialogTitle>
+                <DialogTitle >{postTitle}</DialogTitle>
                 <DialogContent dividers>
                     Post ID is {postId}
 

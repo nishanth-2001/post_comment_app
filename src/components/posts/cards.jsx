@@ -29,7 +29,7 @@ const PostCard = (props) => {
       <CardActions>
       <Button 
       size="small" 
-      onClick={() => handleClick(post.id)}
+      onClick={() => handleClick(post.id,post.title)}
       >View</Button>
       </CardActions>
     </Card>
