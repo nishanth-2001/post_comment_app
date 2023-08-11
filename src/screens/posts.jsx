@@ -66,6 +66,7 @@ const PostsPage = () => {
             minHeight: '80vh',
             justifyContent: 'center',
             alignItems: 'center'
+            
           }}>
           <CircularProgress />
         </Box>
