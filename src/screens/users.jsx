@@ -80,8 +80,21 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-const limit = 1
+const limit = 2
 
+const getAddress = (address) =>{
+  if (!address) {
+    return ""
+  } 
+
+  const suite = address.suite
+  const street = address.street
+  const city = address.city
+  const zipcode = address.zipcode
+
+  return `${address.suite}, ${address.street}, ${address.city}, ${address.zipcode}`
+
+}
 const UsersPage = () => {
 
   const [userData, setUsersData] = useState([])
@@ -96,7 +109,7 @@ const UsersPage = () => {
       try{
       setLoading(true)
       const start = (currentPage - 1) * limit
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users?_start=${start}&_limit=${limit}`, { method: "GET" })
+      const response = await fetch(`http://localhost:3000/users?_start=${start}&_limit=${limit}`, { method: "GET" })
       if (!response.ok) {
         throw new Error("Something Went Wrong....")
 
@@ -187,7 +200,7 @@ const UsersPage = () => {
                 
                 <TableCell sx={{fontFamily:"cursive", fontSize:"20px"}}align="left">{user.username}</TableCell>
                 <TableCell sx={{fontFamily:"cursive", fontSize:"20px"}}align="left">{user.email}</TableCell>
-                <TableCell sx={{fontFamily:"cursive", fontSize:"20px"}}align="left">{user.address && `${user.address.suite}, ${user.address.street}, ${user.address.city}, ${user.address.zipcode}`}</TableCell>
+                <TableCell sx={{fontFamily:"cursive", fontSize:"20px"}}align="left">{getAddress(user.address)}</TableCell>
                 <TableCell sx={{fontFamily:"cursive", fontSize:"20px"}}align="left">{user.phone}</TableCell>
                 <TableCell sx={{fontFamily:"cursive", fontSize:"20px"}}align="left">{user.website}</TableCell>
                 <TableCell sx={{fontFamily:"cursive", fontSize:"20px"}}align="left">{user.company && `${user.company.name}, ${user.company.catchPhrase}, ${user.company.bs}`}</TableCell>

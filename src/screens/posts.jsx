@@ -11,7 +11,7 @@ import Pagination from '@mui/material/Pagination';
 import Comments from "../components/posts/comments"
 
 
-const limit = 10
+const limit = 4
 
 const PostsPage = () => {
 
@@ -27,7 +27,7 @@ const PostsPage = () => {
     const getPost = async () => {
       setLoading(true)
       const start = (currentPage - 1) * limit
-      const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=${limit}`, { method: "GET" })
+      const response = await fetch(`http://localhost:3000/posts?_start=${start}&_limit=${limit}`, { method: "GET" })
       if (!response.ok) {
         throw new Error("Something Went Wrong....")
 
